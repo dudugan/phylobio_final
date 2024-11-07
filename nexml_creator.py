@@ -25,7 +25,8 @@ def create_nexml(pokemon_list):
 
     # initialize stats matrices
     stats_matrices = {}
-    for stat in pokemon_list[0].stats:
+    first_pokemon = pb.pokemon(pokemon_list[0])
+    for stat in first_pokemon.stats:
         stat_name = stat.stat.name.capitalize()
 
         # create a matrix for this stat
