@@ -1,5 +1,14 @@
 import pokebase as pb
 import dendropy as dd
+import sys
+
+pokemon_list = []
+
+if len(sys.argv) > 1:
+    for arg in sys.argv[1:]:
+        pokemon_list.append(arg)
+else:
+    print("no command-line pokemon!")
 
 def create_nexml(pokemon_list):
     char_matrix = dd.CharacterMatrix()
