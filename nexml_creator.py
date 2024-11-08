@@ -142,11 +142,11 @@ def create_nexml(pokemon_list):
         print("Location Indices:", locations_indices)
 
         # Assign the indices to the appropriate matrices
-        abilities_matrix[taxon] = abilities_indices
-        types_matrix[taxon] = types_indices
-        moves_matrix[taxon] = moves_indices
-        games_matrix[taxon] = games_indices
-        locations_matrix[taxon] = locations_indices
+        abilities_matrix[taxon] = abilities_indices if abilities_indices else [-1]
+        types_matrix[taxon] = types_indices if types_indices else [-1]
+        moves_matrix[taxon] = moves_indices if moves_indices else [-1]
+        games_matrix[taxon] = games_indices if games_indices else [-1]
+        locations_matrix[taxon] = locations_indices if locations_indices else [-1]
     
     # write NeXML file
     nexml_tree.write(path="pokedata.xml", schema="nexml")
