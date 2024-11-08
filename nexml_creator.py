@@ -40,19 +40,24 @@ def create_nexml(pokemon_list):
     for pokemon in pokemons:
         taxon = dd.Taxon(label=pokemon.name.capitalize())
 
-        # need slightly different approach for continuous states
-        height_row = height_matrix.new_characters_for_taxon(taxon)
-        height_row["height"] = float(pokemon.height)
-        
-        weight_row = weight_matrix.new_characters_for_taxon(taxon)
-        weight_row["weight"] = float(pokemon.weight)
+        # add taxons to species
+        height_matrix.add_taxon(taxon)
+        weight_matrix.add_taxon(taxon)
+        abilities_matrix.add_taxon(taxon)
+        types_matrix.add_taxon(taxon)
+        moves_matrix.add_taxon(taxon)
+        locations_matrix.add_taxon(taxon)
+        games_matrix.add_taxon(taxon)
 
-        # add stats as individual continuous data
-        # TODO: check if all pokemon have same number of stats
+        # add continuous data for height, weight, and each stat
+            # add stats matrices to pokemon here too for runtime's sake
+            # TODO: check if all pokemon have same number of stats
+        height_matrix[taxon]["height"] = float(pokemon.height)
+        weight_matrix[taxon]["weight"] = float(pokemon.weight)
         for stat in pokemon.stats:
-            stat_name = stat.stat.name
-            stat_row = stats_matrices[f"{stat_name}_matrix"].new_characters_for_taxon(taxon)
-            stat_row[stat_name] = float(stat.base_stat)
+            stat_name = stat.stat.name.capitalize()
+            stats_matrices[f"{stat_name}_matrix"].add_taxon(taxon)
+            stats_matrices[f"{stat_name}_matrix"][stat_name] = float(stat.base_stat)
         
         # read in categorical data
         abilities = {a.ability.name for a in pokemon.abilities}
@@ -61,23 +66,14 @@ def create_nexml(pokemon_list):
         games = {g.version.name for g in pokemon.game_indices[:10]}
 
         # add categorical data to their respective matrices
-        abilities_matrix.add_taxon(taxon)
         abilities_matrix[taxon] = list(abilities)
-        
-        types_matrix.add_taxon(taxon)
         types_matrix[taxon] = list(types)
-        
-        moves_matrix.add_taxon(taxon)
         moves_matrix[taxon] = list(moves)
-
-        games_matrix.add_taxon(taxon)
         games_matrix[taxon] = list(games)
 
         # location area encounters as a list, also limited to 10
         locations = pb.APIResource('pokemon', pokemon.name).location_area_encounters()
         location_areas = {loc["location_area"]["name"] for loc in locations[:10]} if locations else {"unknown"}
-        
-        locations_matrix.add_taxon(taxon)
         locations_matrix[taxon] = list(location_areas)
     
     # write NeXML file
