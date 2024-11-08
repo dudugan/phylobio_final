@@ -124,7 +124,7 @@ def create_nexml(pokemon_list):
         # Read in categorical data (abilities, types, moves, games, and locations) and add to matrices
             # -1 is returned if get doesn't find anything
         abilities_indices = [abilities_map.get(ability, -1) for ability in abilities]
-        types_indices = [types_map.get(type_, -1) for tyI alpe_ in types]
+        types_indices = [types_map.get(type_, -1) for type_ in types]
         moves_indices = [moves_map.get(move, -1) for move in moves]  
         games_indices = [games_map.get(game, -1) for game in games] 
         print("Ability Indices:", abilities_indices)
