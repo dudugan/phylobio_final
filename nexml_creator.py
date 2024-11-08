@@ -69,12 +69,12 @@ def create_nexml(pokemon_list):
         locations.append(location)
         counter = 0
         while location != None:
-            location = encounters_url[counter].location_area
-            print(location)
-            if location != None:
+            if encounters_url[counter]:
+                location = encounters_url[counter].location_area
+                print(location)
                 locations.append(location)
-            counter += 1
-            print(locations)
+                counter += 1
+                print(locations)
 
         # if encounters_url:
         #     response = rq.get(encounters_url)
