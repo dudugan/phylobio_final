@@ -65,6 +65,8 @@ def create_nexml(pokemon_list):
         encounters_url = pokemon.location_area_encounters
         if isinstance(encounters_url, list):
             print(dir(encounters_url[0]))
+            locations = encounters_url[0].location_area
+            print(locations)
             for index, metadata in enumerate(encounters_url):
                 url = metadata.url
                 print(f"Encounter URL {index + 1}: {url}")
