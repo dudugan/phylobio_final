@@ -109,7 +109,7 @@ def create_nexml(pokemon_list):
         abilities = {a.ability.name for a in pokemon.abilities[:10]}
         types = {t.type.name for t in pokemon.types}
         moves = {m.move.name for m in pokemon.moves[:10]}
-        games = {g.version.name for g in pokemon.game_indices[:10]}
+        games = {g.version.name for g in pokemon.game_indices[:1]}
         print("Abilities:", abilities)
         print("Types:", types)
         print("Moves:", moves)
@@ -117,14 +117,14 @@ def create_nexml(pokemon_list):
 
         # Read in categorical data (abilities, types, moves, games, and locations) and add to matrices
             # -1 is returned if get doesn't find anything
-        abilities_indices = [abilities_map.get(ability.ability.name, -1) for ability in abilities]
-        types_indices = [types_map.get(type.type.name, -1) for type in types]
-        moves_indices = [moves_map.get(move.move.name, -1) for move in moves]  
-        games_indices = [games_map.get(game.version.name, -1) for game in games] 
+        abilities_indices = [abilities_map.get(ability, -1) for ability in abilities]
+        types_indices = [types_map.get(type, -1) for type in types]
+        moves_indices = [moves_map.get(move, -1) for move in moves]  
+        games_indices = [games_map.get(game, -1) for game in games] 
         print("Ability Indices:", abilities_indices)
         print("Type Indices:", types_indices)
         print("Move Indices:", moves_indices)
-        print("Game Indices:", games_indices)
+        print("Last Game Index:", games_indices)
 
         encounters_url = pokemon.location_area_encounters
         locations = []
