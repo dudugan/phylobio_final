@@ -79,6 +79,14 @@ def create_nexml(pokemon_list):
 
     print("Abilities Map:", abilities_map)
     print("Abilities List:", abilities_list)
+    print("Moves Map:", moves_map)
+    print("Moves List:", moves_list)
+    print("Types Map:", types_map)
+    print("Types List:", types_list)
+    print("Games Map:", games_map)
+    print("Games List:", games_list)
+    print("Locations Map:", locs_map)
+    print("Locations List:", locs_list)
 
     # create dictionary for each thing with name as key and index in list as value
     abilities_matrix.state_map = abilities_map
@@ -86,8 +94,6 @@ def create_nexml(pokemon_list):
     types_matrix.state_map = types_map
     games_matrix.state_map = games_map
     locations_matrix.state_map = locs_map
-
-    print("Abilities StateMap:", abilities_matrix.state_map)
         
     # add each pokemon's data
     for pokemon in pokemons:
