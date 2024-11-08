@@ -66,7 +66,7 @@ def create_nexml(pokemon_list):
         locations = encounters_url[0].location_area
 
         # locations = pokemon.location_area_encounters
-        location_areas = {loc["location_area"]["name"] for loc in locations[:10]} if locations else {"unknown"}
+        location_areas = {loc["name"] for loc in locations[:10]} if locations else {"unknown"}
         
         # if encounters_url:
         #     response = rq.get(encounters_url)
