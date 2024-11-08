@@ -50,9 +50,9 @@ def create_nexml(pokemon_list):
         for ability in pokemon.abilities:
             abilities_set.add(ability.ability.name)
         for move in pokemon.moves:
-            moves_set.add(move.name)
+            moves_set.add(move.move.name)
         for type in pokemon.types:
-            types_set.add(type.name)
+            types_set.add(type.type.name)
         for game in pokemon.game_indices:
             games_set.add(game.version.name)
         encounters_url = pokemon.location_area_encounters
