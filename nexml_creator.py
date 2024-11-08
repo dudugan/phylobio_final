@@ -4,15 +4,16 @@ import sys
 
 def create_nexml(pokemon_list):
     nexml_tree = dd.DataSet()
+    taxon_namespace = dd.TaxonNamespace(label="PokemonTaxa")
 
     # create a matrix for each relevant characteristic
-    height_matrix = dd.ContinuousCharacterMatrix(label="Height")
-    weight_matrix = dd.ContinuousCharacterMatrix(label="Weight")
-    abilities_matrix = dd.StandardCharacterMatrix(label="Abilities")
-    types_matrix = dd.StandardCharacterMatrix(label="Types")
-    moves_matrix = dd.StandardCharacterMatrix(label="Moves")
-    locations_matrix = dd.StandardCharacterMatrix(label="Locations")
-    games_matrix = dd.StandardCharacterMatrix(label="Games")
+    height_matrix = dd.ContinuousCharacterMatrix(taxon_namespace=taxon_namespace, label="Height")
+    weight_matrix = dd.ContinuousCharacterMatrix(taxon_namespace=taxon_namespace, label="Weight")
+    abilities_matrix = dd.StandardCharacterMatrix(taxon_namespace=taxon_namespace, label="Abilities")
+    types_matrix = dd.StandardCharacterMatrix(taxon_namespace=taxon_namespace, label="Types")
+    moves_matrix = dd.StandardCharacterMatrix(taxon_namespace=taxon_namespace, label="Moves")
+    locations_matrix = dd.StandardCharacterMatrix(taxon_namespace=taxon_namespace, label="Locations")
+    games_matrix = dd.StandardCharacterMatrix(taxon_namespace=taxon_namespace, label="Games")
 
     # add each matrix to the dataset
     nexml_tree.add_char_matrix(height_matrix)
@@ -31,41 +32,29 @@ def create_nexml(pokemon_list):
         stat_name = stat.stat.name.capitalize()
 
         # create a matrix for this stat
-        stats_matrices[f"{stat_name}_matrix"] = dd.ContinuousCharacterMatrix(label="Stats")
+        stats_matrices[f"{stat_name}_matrix"] = dd.ContinuousCharacterMatrix(taxon_namespace=taxon_namespace, label="Stats")
         
         # add this stat's matrix to the dataset
         nexml_tree.add_char_matrix(stats_matrices[f"{stat_name}_matrix"])
         
     # add each pokemon's data
     for pokemon in pokemons:
-        taxon = dd.Taxon(label=pokemon.name.capitalize())
+        taxon = taxon_namespace.new_taxon(label=pokemon.name.capitalize())
 
-        # add taxons to species
-        height_matrix.add_taxon(taxon)
-        weight_matrix.add_taxon(taxon)
-        abilities_matrix.add_taxon(taxon)
-        types_matrix.add_taxon(taxon)
-        moves_matrix.add_taxon(taxon)
-        locations_matrix.add_taxon(taxon)
-        games_matrix.add_taxon(taxon)
+        # read in continuous data and add to matrices
+        height_matrix[taxon] = [float(pokemon.height)]
+        weight_matrix[taxon] = [float(pokemon.weight)]
 
-        # add continuous data for height, weight, and each stat
-            # add stats matrices to pokemon here too for runtime's sake
-            # TODO: check if all pokemon have same number of stats
-        height_matrix[taxon]["height"] = float(pokemon.height)
-        weight_matrix[taxon]["weight"] = float(pokemon.weight)
         for stat in pokemon.stats:
             stat_name = stat.stat.name.capitalize()
-            stats_matrices[f"{stat_name}_matrix"].add_taxon(taxon)
-            stats_matrices[f"{stat_name}_matrix"][stat_name] = float(stat.base_stat)
-        
-        # read in categorical data
+            stats_matrices[f"{stat_name}_matrix"][taxon] = [float(stat.base_stat)]
+
+        # read in categorical data and add to matrices
         abilities = {a.ability.name for a in pokemon.abilities}
         types = {t.type.name for t in pokemon.types}
         moves = {m.move.name for m in pokemon.moves[:10]}
         games = {g.version.name for g in pokemon.game_indices[:10]}
 
-        # add categorical data to their respective matrices
         abilities_matrix[taxon] = list(abilities)
         types_matrix[taxon] = list(types)
         moves_matrix[taxon] = list(moves)
