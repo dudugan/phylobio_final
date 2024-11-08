@@ -91,35 +91,49 @@ def create_nexml(pokemon_list):
         
     # add each pokemon's data
     for pokemon in pokemons:
+        print("Pokémon:", pokemon.name.capitalize())
         taxon = taxon_namespace.new_taxon(label=pokemon.name.capitalize())
 
         # read in continuous data and add to matrices
         height_matrix[taxon] = [float(pokemon.height)]
         weight_matrix[taxon] = [float(pokemon.weight)]
+        print("Height:", float(pokemon.height))
+        print("Weight:", float(pokemon.height))
 
         for stat in pokemon.stats:
             stat_name = stat.stat.name.capitalize()
             stats_matrices[f"{stat_name}_matrix"][taxon] = [float(stat.base_stat)]
+            print(f"{stat_name}:", float(stat.base_stat))
 
         # read in categorical data and add to matrices
-        # abilities = {a.ability.name for a in pokemon.abilities[:10]}
-        # types = {t.type.name for t in pokemon.types}
-        # moves = {m.move.name for m in pokemon.moves[:10]}
-        # games = {g.version.name for g in pokemon.game_indices[:10]}
+        abilities = {a.ability.name for a in pokemon.abilities[:10]}
+        types = {t.type.name for t in pokemon.types}
+        moves = {m.move.name for m in pokemon.moves[:10]}
+        games = {g.version.name for g in pokemon.game_indices[:10]}
+        print("Abilities:", abilities)
+        print("Types:", types)
+        print("Moves:", moves)
+        print("Games:", games)
 
         # Read in categorical data (abilities, types, moves, games, and locations) and add to matrices
             # -1 is returned if get doesn't find anything
-        abilities_indices = [abilities_map.get(ability.ability.name, -1) for ability in pokemon.abilities[:10]]
-        types_indices = [types_map.get(type.type.name, -1) for type_ in pokemon.types]
-        moves_indices = [moves_map.get(move.move.name, -1) for move in pokemon.moves[:10]]  
-        games_indices = [games_map.get(game.version.name, -1) for game in pokemon.game_indices[:10]] 
+        abilities_indices = [abilities_map.get(ability.ability.name, -1) for ability in abilities]
+        types_indices = [types_map.get(type.type.name, -1) for type in types]
+        moves_indices = [moves_map.get(move.move.name, -1) for move in moves]  
+        games_indices = [games_map.get(game.version.name, -1) for game in games] 
+        print("Ability Indices:", abilities_indices)
+        print("Type Indices:", types_indices)
+        print("Move Indices:", moves_indices)
+        print("Game Indices:", games_indices)
 
         encounters_url = pokemon.location_area_encounters
         locations = []
         for i in range(len(encounters_url)):
             location = encounters_url[i].location_area.name
             locations.append(location)
+        print("Locations:", games)
         locations_indices = [locs_map.get(loc, -1) for loc in locations[:10]]
+        print("Location Indices:", locations_indices)
 
         # Assign the indices to the appropriate matrices
         abilities_matrix[taxon] = abilities_indices
