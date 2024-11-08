@@ -48,7 +48,7 @@ def create_nexml(pokemon_list):
     # populate categorical sets
     for pokemon in pokemons:
         for ability in pokemon.abilities:
-            abilities_set.add(ability.name)
+            abilities_set.add(ability.ability.name)
         for move in pokemon.moves:
             moves_set.add(move.name)
         for type in pokemon.types:
