@@ -1,5 +1,6 @@
 import pokebase as pb
 import dendropy as dd
+import requests as rq # just for the annoying locations querying ugh
 import sys
 
 def create_nexml(pokemon_list):
@@ -61,8 +62,16 @@ def create_nexml(pokemon_list):
         games_matrix[taxon] = list(games)
 
         # location area encounters as a list, also limited to 10
-        locations = pb.APIResource('pokemon', pokemon.name).location_area_encounters()
-        location_areas = {loc["location_area"]["name"] for loc in locations[:10]} if locations else {"unknown"}
+        encounters_url = pokemon.location_area_encounters()
+        if encounters_url:
+            response = rq.get(encounters_url)
+            if response.status_code == 200:
+                locations = response.json()
+                location_areas = {loc["location_area"]["name"] for loc in locations[:10]} if locations else {"unknown"}
+            else:
+                location_areas = {"unknown"}
+        else:
+            location_areas = {"unknown"}
         locations_matrix[taxon] = list(location_areas)
     
     # write NeXML file
