@@ -76,6 +76,13 @@ def create_nexml(pokemon_list):
     types_map = {type_: idx for idx, type_ in enumerate(types_list)}
     games_map = {move: idx for idx, move in enumerate(games_list)}
     locs_map = {type_: idx for idx, type_ in enumerate(locs_list)}
+
+    # create dictionary for each thing with name as key and index in list as value
+    abilities_matrix.state_map = abilities_map
+    moves_matrix.state_map = moves_map
+    types_matrix.state_map = types_map
+    games_matrix.state_map = games_map
+    locations_matrix.state_map = locs_map
         
     # add each pokemon's data
     for pokemon in pokemons:
