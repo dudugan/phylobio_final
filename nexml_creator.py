@@ -47,17 +47,17 @@ def create_nexml(pokemon_list):
 
     # populate categorical sets
     for pokemon in pokemons:
-        for ability in pokemon.abilities:
+        for ability in pokemon.abilities[:10]:
             abilities_set.add(ability.ability.name)
-        for move in pokemon.moves:
+        for move in pokemon.moves[:10]:
             moves_set.add(move.move.name)
         for type in pokemon.types:
             types_set.add(type.type.name)
-        for game in pokemon.game_indices:
+        for game in pokemon.game_indices[:1]:
             games_set.add(game.version.name)
         encounters_url = pokemon.location_area_encounters
         locations = []
-        for i in range(len(encounters_url)):
+        for i in range(min(len(encounters_url), 9)):
             location = encounters_url[i].location_area.name
             locations.append(location)
         for loc in locations:
