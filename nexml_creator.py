@@ -62,9 +62,11 @@ def create_nexml(pokemon_list):
         games_matrix[taxon] = list(games)
 
         # location area encounters as a list, also limited to 10
-        encounters_url = pokemon.location_area_encounters()
+        # encounters_url = pokemon.location_area_encounters()
         # splitting by slash gives us the last two things in the url
-        locations = pb.APIResource(encounters_url.split('/')[-2], encounters_url('/')[-1])
+        # locations = pb.APIResource(encounters_url.split('/')[-2], encounters_url('/')[-1])
+
+        locations = pokemon.location_area_encounters()
         location_areas = {loc["location_area"]["name"] for loc in locations[:10]} if locations else {"unknown"}
         
         
@@ -77,7 +79,7 @@ def create_nexml(pokemon_list):
         #         location_areas = {"unknown"}
         # else:
         #     location_areas = {"unknown"}
-        
+
         locations_matrix[taxon] = list(location_areas)
     
     # write NeXML file
