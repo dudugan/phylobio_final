@@ -63,15 +63,16 @@ def create_nexml(pokemon_list):
 
         # location area encounters as a list, also limited to 10
         encounters_url = pokemon.location_area_encounters
-        locations = encounters_url[0].location_area
-        print(locations)
-        locations2 = encounters_url[1].location_area
-        print(locations2)
-        print(dir(locations))
+        location = encounters_url[0].location_area; 
+        locations = []
+        locations.append(location)
+        counter = 0
+        while location != None:
+            location = encounters_url[counter].location_area
+            if location != None:
+                locations.append(location)
+            counter += 1
 
-        # locations = pokemon.location_area_encounters
-        location_areas = {loc.location_area["name"] for loc in encounters_url} if encounters_url else {"unknown"}
-        
         # if encounters_url:
         #     response = rq.get(encounters_url)
         #     if response.status_code == 200:
@@ -82,7 +83,7 @@ def create_nexml(pokemon_list):
         # else:
         #     location_areas = {"unknown"}
 
-        locations_matrix[taxon] = list(location_areas)
+        locations_matrix[taxon] = list(locations)
     
     # write NeXML file
     nexml_tree.write(path="pokedata.xml", schema="nexml")
