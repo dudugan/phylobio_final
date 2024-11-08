@@ -63,18 +63,13 @@ def create_nexml(pokemon_list):
 
         # location area encounters as a list, also limited to 10
         encounters_url = pokemon.location_area_encounters
-        location = encounters_url[0].location_area; 
         locations = []
-        print(location)
-        locations.append(location)
-        counter = 0
-        while location != None:
-            if encounters_url[counter]:
-                location = encounters_url[counter].location_area
-                print(location)
-                locations.append(location)
-                counter += 1
-                print(locations)
+        
+        for i in range(len(encounters_url)):
+            location = encounters_url[i].location_area.name
+            print(location)
+            locations.append(location)
+            print(locations)
 
         # if encounters_url:
         #     response = rq.get(encounters_url)
