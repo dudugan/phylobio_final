@@ -1,6 +1,5 @@
 import pokebase as pb
 import dendropy as dd
-import requests as rq # just for the annoying locations querying ugh
 import sys
 
 def create_nexml(pokemon_list):
@@ -33,7 +32,7 @@ def create_nexml(pokemon_list):
         stat_name = stat.stat.name.capitalize()
 
         # create a matrix for this stat
-        stats_matrices[f"{stat_name}_matrix"] = dd.ContinuousCharacterMatrix(taxon_namespace=taxon_namespace, label="Stats")
+        stats_matrices[f"{stat_name}_matrix"] = dd.ContinuousCharacterMatrix(taxon_namespace=taxon_namespace, label=stat_name)
         
         # add this stat's matrix to the dataset
         nexml_tree.add_char_matrix(stats_matrices[f"{stat_name}_matrix"])
