@@ -64,10 +64,18 @@ def create_nexml(pokemon_list):
         # location area encounters as a list, also limited to 10
         encounters_url = pokemon.location_area_encounters
         if isinstance(encounters_url, list):
-            for index, url in enumerate(encounters_url):
+            print(dir(encounters_url[0]))
+            for index, metadata in enumerate(encounters_url):
+                url = metadata.url
                 print(f"Encounter URL {index + 1}: {url}")
+
+                if isinstance(url, str):
+                    encounter_details = pb.APIResource(url.split('/')[-2], url.split('/')[-1])
+                else:
+                    print(f"Encounter url {index + 1} is not a valid string")
         else:
             print("encounters_url is not a list")
+
         # splitting by slash gives us the last two things in the url
         locations = pb.APIResource(encounters_url.split('/')[-2], encounters_url.split('/')[-1])
 
