@@ -79,6 +79,9 @@ def get_data(pokemon_list):
                 stats_dict[stat.stat.name] = [float(stat.base_stat)]
             else:
                 stats_dict[stat.stat.name].append(float(stat.base_stat))
+
+    # TODO: actually in the end test stats by distribution, 
+    # ie get the sum of all stats and then get the % of that that is HP, attack, etc.
             
     # find max and min for each stat
     for stat in stats_list:
