@@ -94,7 +94,7 @@ def get_data(pokemon_list):
 
     for pokemon in pokemons:
         # this assumes every pokemon only has one type
-        type_str = pokemon.types[0].name
+        type_str = pokemon.types[0].type.name
         print(f"Pokemon {pokemon.name} has pre-type: {type_str}")
         type_ = type_to_char(type_str)
         print(f"Pokemon {pokemon.name} has type: {type_}")
