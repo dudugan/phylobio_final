@@ -1,0 +1,117 @@
+---
+title: "Analysis"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, echo = FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ape)
+install.packages("phangorn")
+library(phangorn)
+
+# Load data import, wrangling, and plotting tools from the Tidyverse. 
+# See https://r4ds.had.co.nz/ for more
+library(tidyverse)
+
+library(magrittr)
+
+data_matrix <- read.nexus.data("your_file.nex")
+
+# Convert to phyDat object for phylogenetic analysis
+data_phydat <- phyDat(data_matrix, type = "USER", levels = c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H"))
+
+# Compute the distance matrix (Hamming distance)
+dist_matrix <- dist.hamming(data_phydat)
+
+# Infer a tree using Neighbor-Joining
+tree_nj <- nj(dist_matrix)
+
+# Create a starting tree
+starting_tree <- nj(dist_matrix)
+
+# Use maximum likelihood
+tree_ml <- optim.pml(pml(starting_tree, data = data_phydat), model = "JC")$tree
+
+# Plot NJ tree
+plot(tree_nj, main = "Neighbor-Joining Tree")
+
+# Plot ML tree if used
+plot(tree_ml, main = "Maximum Likelihood Tree")
+
+
+
+```
+
+
+## Introduction
+
+The goals of this exercise are to perform a basic morphological analyses.
+
+You will use a dataset on fossil bears, featured in [this other tutorial](https://revbayes.github.io/tutorials/morph_tree/) and derived from a [previous study](https://doi.org/10.3989/egeol.40714.182).
+
+
+
+
+## Problems and tasks
+
+
+
+
+> **_Problem 1:_** (1 point) 
+
+1. Examine the data matrix bears.nex, which is in nexus format. Answer the following questions:
+
+- How many species and characters are there?
+
+**There are 18 species and 62 characters.**
+
+- Describe the structure of the data (continuous, discrete, number of states, etc...)
+
+**For each species, each discrete character has 4 potential states:**
+
+- '1' (the species has this characteristic)
+
+- '0' (the species does not have this characteristic)
+
+- '?' (we don't know if the species has this characteristic; there is missing or unclear data)
+
+- '-' (there is some sort of gap in the sequence (I'm not sure exactly how this is supposed to be applied to discrete characters, and there are actually no gaps in this matrix anyway, but it is listed at the top of the file as an option - potentially it would mean that this characteristic isn't relevant to this species?))
+
+
+
+
+Next, run a phylogenetic analysis with iqtree:
+
+   iqtree2 -s bears.nex -bb 1000 -nt AUTO 
+
+
+
+
+> **_Problem 2:_** (2 points) Examine the `bears.nex.iqtree` log file. Indicate which which model and parameters were selected. Describe this model here.
+
+**Iqtree selected JC2+FQ+ASC+G4 as the model. Going through each attribute of the model:**
+
+- This is a Jukes-Cantor model for 2-state data, which means changes between the states occur at the same rate.
+
+- Base state frequencies are fixed and equal. 
+
+- It uses Ascertainment Bias Correction, which basically tries to correct the analysis for potential oversampling or undersampling of only certain parts of a genome (or only certain unrepresentative character states). Often it will exclude invariant sites if there are many, but here it actually probably does the opposite since there aren't any at all, and compensates for the lack of invariant sites by adjusting the likelihood calculations as if there were more. It also influences the gamma rates. 
+
+- It allows for the fact that different sites might have different rates of evolution by sorting sites into four groups and giving them different rates (via the 'relative rates' 0.03002, 0.2397, 0.8064, and 2.924, decided by the gamma shape alpha 0.4816).
+
+
+
+> **_Problem 3:_** (1 point) Insert a code block below to plot the tree with bootstrap support. Then summarize the result (for example, how well supported is the tree?)
+
+```{r fig.width=20, fig.height=8}
+
+phy = read.tree("bears.nex.treefile")
+plot(phy)
+nodelabels(phy$node.label)
+
+```
+
+**This tree is not well supported! The clade to the far right seems to be pretty well-supported as a clade with 98 BS, and its more populous daughter clade has 91 BS, but otherwise nothing exceeds 90 BS and most clades have much lower BS. This makes a lot of sense given how little data we have compared to our other analyses.**
