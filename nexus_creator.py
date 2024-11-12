@@ -8,7 +8,7 @@ import sys
     # 18 types
 
 def type_to_char(type_):
-    match type_:
+    match type_.lower():
         case "fire":
             return "F"
         case "water":
