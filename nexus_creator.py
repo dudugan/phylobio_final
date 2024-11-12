@@ -92,7 +92,7 @@ def get_data(pokemon_list):
 
     for pokemon in pokemons:
         # this assumes every pokemon only has one type
-        type_str = pokemon.type[0]
+        type_str = pokemon.types[0]
         type_ = type_to_char(type_str)
 
         height_fl = float(pokemon.height)
