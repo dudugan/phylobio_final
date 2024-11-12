@@ -45,6 +45,8 @@ def type_to_char(type_):
             return "T"
         case "ground":
             return "O"
+        case _:
+            return "?"
 
 def get_data(pokemon_list):
 
@@ -93,13 +95,19 @@ def get_data(pokemon_list):
     for pokemon in pokemons:
         # this assumes every pokemon only has one type
         type_str = pokemon.types[0]
+        print(f"Pokemon {pokemon.name} has pre-type: {type_str}")
         type_ = type_to_char(type_str)
+        print(f"Pokemon {pokemon.name} has type: {type_}")
 
         height_fl = float(pokemon.height)
+        print(f"Pokemon {pokemon.name} has pre-height: {height_fl}")
         height = int((height_fl - min_height)*9/(max_height-min_height))
-        
+        print(f"Pokemon {pokemon.name} has height: {height}")
+
         weight_fl = float(pokemon.weight)
+        print(f"Pokemon {pokemon.name} has pre-weight: {weight_fl}")
         weight = int((weight_fl - min_weight)*9/(max_weight-min_weight))
+        print(f"Pokemon {pokemon.name} has weight: {weight}")
         
         this_data = ""
         this_data += type_
@@ -109,8 +117,11 @@ def get_data(pokemon_list):
             stat_fl = float(stat.base_stat)
             stat_val = int((stat_fl - stats_dict[stat.stat.name][0])*9/(stats_dict[stat.stat.name][1] - stats_dict[stat.stat.name][0]))
             this_data += str(stat_val)
+            print(f"Pokemon {pokemon.name} has pre-{stat.stat.name}: {stat_fl}")
+            print(f"Pokemon {pokemon.name} has {stat.stat.name}: {stat_val}")
 
         data[pokemon.name] = this_data
+        print(f"Pokemon {pokemon.name} has data: {data[pokemon.name]}")
     return data
 
 def create_nexus(data):    
