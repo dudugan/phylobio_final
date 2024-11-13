@@ -4,6 +4,10 @@ import sys
 # testing WITHOUT moves, abilities, games, or locations
 # and putting height and weight and stats into buckets
 
+# TODO: add egg group, (body) shape, color, habitats
+# TODO: take out legendaries
+# TODO: only include basics OR only include final evos
+
 # so only types, height, weight, and stats
     # 18 types
 
@@ -61,6 +65,7 @@ def get_data(pokemon_list):
     for stat in pokemons[0].stats:
         stat_name = stat.stat.name
         stats_list.append(stat_name)
+        print(f"found stat {stat_name}")
 
     # make stats dictionary
     stats_dict = {stat_name: [] for stat_name in stats_list}
@@ -72,8 +77,16 @@ def get_data(pokemon_list):
     height_list = []
     weight_list = []
     for pokemon in pokemons:
-        height_list.append(float(pokemon.height))
-        weight_list.append(float(pokemon.weight))
+        if (pokemon.height):
+            height_list.append(float(pokemon.height))
+        else:
+            print(f"height of {pokemon.name} not found")
+
+        if (pokemon.weight):
+            weight_list.append(float(pokemon.weight))
+        else:
+            print(f"height of {pokemon.name} not found")
+
         for stat in pokemon.stats:
             if (stats_dict[stat.stat.name] == []):
                 stats_dict[stat.stat.name] = [float(stat.base_stat)]
@@ -86,14 +99,20 @@ def get_data(pokemon_list):
     # find max and min for each stat
     for stat in stats_list:
         max_stat = max(stats_dict[stat])
+        print(f"max {stat.stat.name} is {max_stat}")
         min_stat = min(stats_dict[stat])
+        print(f"min {stat.stat.name} is {min_stat}")
         stats_dict[stat] = [min_stat, max_stat]
     
     # find max and min height and weight value
     max_height = max(height_list)
+    print(f"max height is {max_height}")
     min_height = min(height_list)
+    print(f"min height is {min_height}")
     max_weight = max(weight_list)
+    print(f"max weight is {max_weight}")
     min_weight = min(weight_list)
+    print(f"min weight is {min_weight}")
 
     for pokemon in pokemons:
         # this assumes every pokemon only has one type
