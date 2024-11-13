@@ -4,6 +4,18 @@ My final project for Phylogenetic Biology.
 ## Introduction and Goals
 *to be edited later...*
 
+It is a great mystery, and an understudied one at that, 
+how Pokémon are related to each other. Many brave souls have tried to
+understand the phylogenetic relationships between Pokémon species, but
+thus far our currently-known 
+
+
+
+
+
+
+
+
 Acoustic communication in choanate vertebrates has been found to have surprisingly ancient origins ([1](https://www.nature.com/articles/s41467-020-14356-3), [2](https://www.nature.com/articles/s41467-022-33741-8)), and has been extremely well conserved across time. 
 
 The evolution of acoustic communication has been linked to nocturnality ([2](https://www.nature.com/articles/s41467-022-33741-8)) even as the evolution of more specific systems such as alarm calls have been linked with diurnality ([3](https://doi.org/10.1093/beheco/arh148)). The evolution of communication has also been heavily linked with sociality. 

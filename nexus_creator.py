@@ -92,9 +92,9 @@ def get_data(pokemon_list):
     # find max and min for each stat
     for stat in stats_list:
         max_stat = max(stats_dict[stat])
-        print(f"max {stat.stat.name} is {max_stat}")
+        print(f"max {stat} is {max_stat}")
         min_stat = min(stats_dict[stat])
-        print(f"min {stat.stat.name} is {min_stat}")
+        print(f"min {stat} is {min_stat}")
         stats_dict[stat] = [min_stat, max_stat]
     
     # find max and min height and weight value
@@ -160,6 +160,11 @@ pokemon_list = sys.argv[1:] if len(sys.argv) > 1 else []
 if not pokemon_list: 
     print("no command-line pokemon!")
     sys.exit(1)
+for pokemon in pokemon_list:
+    if (not pb.pokemon(pokemon)):
+        print(f"pokemon {pokemon} doesn't exist in the pokebase!")
+        sys.exit(1)
+
 
 # get data from pokemon list
 data = get_data(pokemon_list)
