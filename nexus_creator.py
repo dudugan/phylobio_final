@@ -4,7 +4,7 @@ import sys
 # testing WITHOUT moves, abilities, games, or locations
 # and putting height and weight and stats into buckets
 
-# TODO: add egg group, (body) shape, color, habitats
+# TODO: add egg group, (body) shape, color, habitats, whether they can learn a move naturally or via TM?
 # TODO: take out legendaries
 # TODO: only include basics OR only include final evos
 
@@ -77,15 +77,8 @@ def get_data(pokemon_list):
     height_list = []
     weight_list = []
     for pokemon in pokemons:
-        if (pokemon.height):
-            height_list.append(float(pokemon.height))
-        else:
-            print(f"height of {pokemon.name} not found")
-
-        if (pokemon.weight):
-            weight_list.append(float(pokemon.weight))
-        else:
-            print(f"height of {pokemon.name} not found")
+        height_list.append(float(pokemon.height))
+        weight_list.append(float(pokemon.weight))
 
         for stat in pokemon.stats:
             if (stats_dict[stat.stat.name] == []):
