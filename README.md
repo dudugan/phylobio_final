@@ -7,7 +7,11 @@ My final project for Phylogenetic Biology.
 It is a great mystery, and an understudied one at that, 
 how Pokémon are related to each other. Many brave souls have tried to
 understand the phylogenetic relationships between Pokémon species, but
-thus far our currently-known 
+thus far the currently-known data on all Pokémon has not been
+put through a rigorous and replicatable phylogenetic analysis. This
+project aims to use morphological data from the PokéAPI in order
+to attempt to create a phylogeny of all known Pokémon and 
+reconstruct ancestral character states. 
 
 
 
