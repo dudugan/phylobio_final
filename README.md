@@ -16,6 +16,15 @@ reconstruct ancestral character states.
 Many have tried reconstructing the phylogenetic tree without using
 statistical methods (https://www.reddit.com/r/pokemon/comments/ect3kx/pokemon_phylogenetic_tree_of_life_updated_for/, )
 
+One group actually did apparently use a Bayesian MCMC analysis (https://www.youtube.com/watch?v=mTItPwZThNM)!
+However, their research wasn't well documented and was very much not replicable - *and* 
+they did their analysis at least 11 years ago, with different sets of tools, without fairy-type pokemon
+or *most* of the pokemon around now, and with a different set of characteristics than I think I'd use.
+Also, they seemingly only generated one tree and didn't add noise anywhere, weighted type
+extremely heavily, and didn't test the analysis with any clamping anywhere (for example, they
+included legendaries which
+in the Pokémon universe are known to exist as single beings, not species). 
+
 
 
 

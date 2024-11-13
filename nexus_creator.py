@@ -151,7 +151,7 @@ def get_data(pokemon_list):
 def create_nexus(data):    
     nexus_content = "#NEXUS\nBEGIN DATA;\n"
     nexus_content += f"\tDIMENSIONS NCHAR={len(next(iter(data.values())))} NTAX={len(data)};\n"
-    nexus_content += "\tFORMAT DATATYPE=STANDARD GAP=- MISSING=? SYMBOLS=\"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\";\n\tMATRIX\n"
+    nexus_content += "\tFORMAT DATATYPE=STANDARD GAP=- MISSING=? SYMBOLS=\"0123456789ABDEFGHINOPRSTWY\";\n\tMATRIX\n"
 
     for taxon, states in data.items():
         nexus_content += f"\t{taxon}\t{states}\n"
