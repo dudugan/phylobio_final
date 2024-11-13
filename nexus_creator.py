@@ -116,11 +116,7 @@ def get_data(pokemon_list):
     for pokemon in pokemons:
         # force load everything
         pokemon._load()
-        print(f"\npokemon {pokemon.name}")
-        print(f"\n")
-        print(pokemon.__dict__)
-        print(f"\n")
-        print(dir(pokemon))
+        print(f"\npokemon {pokemon.name}\n")
         # this assumes every pokemon only has one type
         type_str = pokemon.types[0].type.name
         print(f"Pokemon {pokemon.name} has pre-type: {type_str}")
