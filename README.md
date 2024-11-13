@@ -47,6 +47,8 @@ module load IQ-TREE
 iqtree2 -s output.nex -bb 1000 -nt AUTO
 ```
 
+This job script also can take a long time to run, depending on the number of pokémon - as of the time of writing, I've been running a script trying to find the phylogeny of 75 different taxa (nearly all the basic Gen 1 Pokémon) for 31 minutes and 42 seconds. 
+
 4. ```pokeapi_pokemon.txt``` is a temporary file I created which contains the names of every pokémon that is possible to be queried through the PokéAPI. 
 5. ```analysis.rmd``` is a copy of our Chapter 08 exercise rmd, which I modified (barely) to view the basic results of my analyses.
 6. ```analysis.pdf``` is the pdf output of the previous rmd file. 
