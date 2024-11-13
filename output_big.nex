@@ -1,0 +1,82 @@
+#NEXUS
+BEGIN DATA;
+	DIMENSIONS NCHAR=9 NTAX=75;
+	FORMAT DATATYPE=STANDARD GAP=- MISSING=? SYMBOLS="0123456789ABCDEFGH";
+	MATRIX
+	bulbasaur	G00321332
+	charmander	F00321223
+	squirtle	W00331231
+	caterpie	B00111002
+	weedle		B00211002
+	pidgey		N00221112
+	rattata		N00310013
+	spearow		N00311103
+	ekans		P10320122
+	pikachu		E00320225
+	sandshrew	O00541001
+	clefairy	A00222231
+	vulpix		F00221233
+	jigglypuff	N00203100
+	zubat		P00211012
+	oddish		G00321331
+	paras		B00420130
+	venonat		B00321132
+	diglett		O00310125
+	meowth		N00211115
+	psyduck		W00321322
+	mankey		T00511123
+	growlithe	F00421323
+	poliwag		W00321115
+	abra		Y00100535
+	machop		T00522111
+	bellsprout	G00511301
+	tentacool	W00211263
+	geodude		R00551000
+	ponyta		F00521335
+	slowpoke	W10433110
+	magnemite	E00230532
+	doduo		N10520114
+	seel		W01222142
+	grimer		P00522120
+	shellder	W00450101
+	gastly		H10210514
+	onix		R94290023
+	drowzee		Y00321161
+	krabby		W00740002
+	voltorb		E00121235
+	electrode	E11331459
+	cubone		O00351121
+	hitmonlee	T10821174
+	lickitung	N11343241
+	koffing		P00451221
+	rhyhorn		O02552000
+	chansey		N00009172
+	tangela		G00362513
+	kangaskhan	N21643155
+	horsea		W00230303
+	goldeen		W00431123
+	staryu		W00220334
+	scyther		B11742256
+	jynx		I10312665
+	electabuzz	E00532556
+	magmar		F10632555
+	pinsir		B11852244
+	tauros		N11652146
+	magikarp	W00020004
+	ditto		N00321222
+	eevee		N00321132
+	vaporeon	W00434663
+	jolteon		E00432667
+	flareon		F00932573
+	porygon		N00332441
+	omanyte		R00250431
+	kabuto		R00540222
+	aerodactyl	R11732247
+	snorlax		N19735371
+	articuno	I11553594
+	zapdos		E11643765
+	dratini		D10421222
+	mewtwo		Y12743967
+	mew			Y00653565
+;
+END;

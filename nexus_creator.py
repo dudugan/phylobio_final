@@ -14,41 +14,41 @@ import sys
 def type_to_char(type_):
     match type_.lower():
         case "fire":
-            return "F"
+            return "0"
         case "water":
-            return "W"
+            return "1"
         case "grass":
-            return "G"
+            return "2"
         case "electric":
-            return "E"
+            return "3"
         case "ice":
-            return "I"
+            return "4"
         case "ghost":
-            return "H"
+            return "5"
         case "poison":
-            return "P"
+            return "6"
         case "dragon":
-            return "D"
+            return "7"
         case "dark":
-            return "K"
+            return "8"
         case "flying":
-            return "L"
+            return "9"
         case "normal":
-            return "N"
-        case "fairy":
             return "A"
-        case "steel":
-            return "S"
-        case "rock":
-            return "R"
-        case "bug":
+        case "fairy":
             return "B"
+        case "steel":
+            return "C"
+        case "rock":
+            return "D"
+        case "bug":
+            return "E"
         case "psychic":
-            return "Y"
+            return "F"
         case "fighting":
-            return "T"
+            return "G"
         case "ground":
-            return "O"
+            return "H"
         case _:
             return "?"
 
@@ -151,7 +151,7 @@ def get_data(pokemon_list):
 def create_nexus(data):    
     nexus_content = "#NEXUS\nBEGIN DATA;\n"
     nexus_content += f"\tDIMENSIONS NCHAR={len(next(iter(data.values())))} NTAX={len(data)};\n"
-    nexus_content += "\tFORMAT DATATYPE=STANDARD GAP=- MISSING=? SYMBOLS=\"0123456789ABDEFGHINOPRSTWY\";\n\tMATRIX\n"
+    nexus_content += "\tFORMAT DATATYPE=STANDARD GAP=- MISSING=? SYMBOLS=\"0123456789ABCDEFGH\";\n\tMATRIX\n"
 
     for taxon, states in data.items():
         nexus_content += f"\t{taxon}\t{states}\n"
