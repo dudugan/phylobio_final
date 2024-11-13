@@ -13,6 +13,9 @@ project aims to use morphological data from the PokéAPI in order
 to attempt to create a phylogeny of all known Pokémon and 
 reconstruct ancestral character states. 
 
+Many have tried reconstructing the phylogenetic tree without using
+statistical methods (https://www.reddit.com/r/pokemon/comments/ect3kx/pokemon_phylogenetic_tree_of_life_updated_for/, )
+
 
 
 

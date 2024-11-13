@@ -77,6 +77,12 @@ def get_data(pokemon_list):
     height_list = []
     weight_list = []
     for pokemon in pokemons:
+        
+        print(f"\npokemon {pokemon.name}")
+        print(dir(pokemon))
+        print(f"\npokemon['height'] is {pokemon['height']}")
+        print(f"{pokemon.name} height is {pokemon.height}")
+        print(f"{pokemon.name} weight is {pokemon.weight}")
         height_list.append(float(pokemon.height))
         weight_list.append(float(pokemon.weight))
 
@@ -164,7 +170,6 @@ for pokemon in pokemon_list:
     if (not pb.pokemon(pokemon)):
         print(f"pokemon {pokemon} doesn't exist in the pokebase!")
         sys.exit(1)
-
 
 # get data from pokemon list
 data = get_data(pokemon_list)
