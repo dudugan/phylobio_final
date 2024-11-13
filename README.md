@@ -14,7 +14,7 @@ to attempt to create a phylogeny of all known Pokémon and
 reconstruct ancestral character states. 
 
 Many have tried reconstructing the phylogenetic tree without using
-statistical methods ([1](https://www.reddit.com/r/pokemon/comments/ect3kx/pokemon_phylogenetic_tree_of_life_updated_for), [2](https://www.youtube.com/watch?v=NLuyiw3_I0c, https://jgeekstudies.org/2024/08/24/euarthropod-diversity-in-pokemon-searching-for-the-ancestral-type/), [3](https://www.researchgate.net/publication/323639991_Arthropod_diversity_in_Pokemon), [4](https://www.youtube.com/@Pokecology)), and one group actually did apparently use a Bayesian MCMC analysis ([5](https://www.youtube.com/watch?v=mTItPwZThNM))! However, their research wasn't
+statistical methods ([1](https://www.reddit.com/r/pokemon/comments/ect3kx/pokemon_phylogenetic_tree_of_life_updated_for), [2](https://www.youtube.com/watch?v=NLuyiw3_I0c), [3](https://jgeekstudies.org/2024/08/24/euarthropod-diversity-in-pokemon-searching-for-the-ancestral-type/), [4](https://www.researchgate.net/publication/323639991_Arthropod_diversity_in_Pokemon), [5](https://www.youtube.com/@Pokecology)), and one group actually did apparently use a Bayesian MCMC analysis ([6](https://www.youtube.com/watch?v=mTItPwZThNM))! However, their research wasn't
 well-documented at all (and therefore completely impossible to replicate - this isn't
 to down on them because they probably did not consider it as serious as an analysis
 of Earth-species) *and* they did this analysis at least 11 years ago, with a different
