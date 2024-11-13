@@ -14,7 +14,7 @@ to attempt to create a phylogeny of all known Pokémon and
 reconstruct ancestral character states. 
 
 Many have tried reconstructing the phylogenetic tree without using
-statistical methods (https://www.reddit.com/r/pokemon/comments/ect3kx/pokemon_phylogenetic_tree_of_life_updated_for/, https://www.youtube.com/watch?v=NLuyiw3_I0c, https://jgeekstudies.org/2024/08/24/euarthropod-diversity-in-pokemon-searching-for-the-ancestral-type/, https://www.researchgate.net/publication/323639991_Arthropod_diversity_in_Pokemon, https://www.youtube.com/@Pokecology), and one group actually did apparently use a Bayesian MCMC analysis (https://www.youtube.com/watch?v=mTItPwZThNM)! However, their research wasn't
+statistical methods ([1](https://www.reddit.com/r/pokemon/comments/ect3kx/pokemon_phylogenetic_tree_of_life_updated_for), [2](https://www.youtube.com/watch?v=NLuyiw3_I0c, https://jgeekstudies.org/2024/08/24/euarthropod-diversity-in-pokemon-searching-for-the-ancestral-type/), [3](https://www.researchgate.net/publication/323639991_Arthropod_diversity_in_Pokemon), [4](https://www.youtube.com/@Pokecology)), and one group actually did apparently use a Bayesian MCMC analysis ([5](https://www.youtube.com/watch?v=mTItPwZThNM))! However, their research wasn't
 well-documented at all (and therefore completely impossible to replicate - this isn't
 to down on them because they probably did not consider it as serious as an analysis
 of Earth-species) *and* they did this analysis at least 11 years ago, with a different
@@ -52,30 +52,6 @@ This job script also can take a long time to run, depending on the number of pok
 4. ```pokeapi_pokemon.txt``` is a temporary file I created which contains the names of every pokémon that is possible to be queried through the PokéAPI. 
 5. ```analysis.rmd``` is a copy of our Chapter 08 exercise rmd, which I modified (barely) to view the basic results of my analyses.
 6. ```analysis.pdf``` is the pdf output of the previous rmd file. 
-
-
-
-
-
-
-
-Acoustic communication in choanate vertebrates has been found to have surprisingly ancient origins ([1](https://www.nature.com/articles/s41467-020-14356-3), [2](https://www.nature.com/articles/s41467-022-33741-8)), and has been extremely well conserved across time. 
-
-The evolution of acoustic communication has been linked to nocturnality ([2](https://www.nature.com/articles/s41467-022-33741-8)) even as the evolution of more specific systems such as alarm calls have been linked with diurnality ([3](https://doi.org/10.1093/beheco/arh148)). The evolution of communication has also been heavily linked with sociality. 
-
-However, the *degree* to which species use acoustic communication (as opposed to visual or chemical communication, or the lack of a communication system entirely) varies widely, and not much research seems to have been done on whether diel activity (nocturnality/diurnality/etc.) is correlated with this. The explanation offered for why nocturnality is correlated with the evolution of communication is that visual signals are much weaker in the nighttime, and this would seem to suggest that nocturnal species also should develop more complex communication systems; however, there might be confounding factors at play (including sociality). 
-
-Primates are an extremely well-suited test clade for this question, for a few reasons. 
-
-1) Primates display a wide range of diel patterns, with certain subclades being almost entirely diurnal or nocturnal, and others being very mixed. These diel activity patterns are generally well-documented. 
-2) Most-if-not-all primates have *some* sort of acoustic communication; however, the importance and complexity of these systems vary widely, and are also generally well-documented. 
-3) Primate sociality also varies widely and is generally well-documented. 
-
-The goal of my project is to figure out to what degree diel activity is correlated with the evolution of communication in primate species. I will also investigate sociality as a potential confounding factor (and maybe other things too, if I think of them soon and they have well-established data). 
-
-In order to do this, I will conduct a phylogenetic analysis of the primate order (including many outgroups, of course!) to reconstruct ancestral character states relating to diel activity, sociality, and communication system (complexity and perhaps type), using whole-genome phylogenies, Bayesian analysis, and multiple evolutionary models. 
-
-I will collect data from published papers on primate communication systems, diel activity, and sociality. I will probably use pre-existing primate phylogenies, but potentially also create my own from the ground up based on whole sequenced genomes. 
 
 ## Guidelines - you can delete this section before submission
 
