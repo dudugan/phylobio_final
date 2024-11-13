@@ -77,7 +77,7 @@ def get_data(pokemon_list):
     height_list = []
     weight_list = []
     for pokemon in pokemons:
-        pokemon._load() # force load any attributes that might be missing
+        # pokemon._load() # force load any attributes that might be missing
         print(f"\npokemon {pokemon.name}")
         print(dir(pokemon))
         print(f"{pokemon.name} height is {pokemon.height}")
