@@ -90,8 +90,8 @@ def get_data(pokemon_list):
         else:
             print(f"{pokemon.name} does not have weight attribute")
 
-        for stat in pokemon.stats:
-            if (hasattr(pokemon, 'stats')):
+        if (hasattr(pokemon, 'stats')):
+            for stat in pokemon.stats:
                 if (stats_dict[stat.stat.name] == []):
                     stats_dict[stat.stat.name] = [float(stat.base_stat)]
                 else:
