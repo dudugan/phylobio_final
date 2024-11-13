@@ -77,25 +77,20 @@ def get_data(pokemon_list):
     height_list = []
     weight_list = []
     for pokemon in pokemons:
+        if (not pokemon.id_):
+            print(f"pokemon {pokemon.name} not found")
+            sys.exit(1)
         print(f"\npokemon {pokemon.name}")
-        # print(dir(pokemon))
-        if (hasattr(pokemon, 'height')):
-            print(f"{pokemon.name} height is {pokemon.height}")
-            height_list.append(float(pokemon.height))
-        else:
-            print(f"{pokemon.name} does not have height attribute")
-        if (hasattr(pokemon, 'weight')):
-            print(f"{pokemon.name} weight is {pokemon.weight}")
-            weight_list.append(float(pokemon.weight))
-        else:
-            print(f"{pokemon.name} does not have weight attribute")
+        print(f"{pokemon.name} height is {pokemon.height}")
+        height_list.append(float(pokemon.height))
+        print(f"{pokemon.name} weight is {pokemon.weight}")
+        weight_list.append(float(pokemon.weight))
 
-        if (hasattr(pokemon, 'stats')):
-            for stat in pokemon.stats:
-                if (stats_dict[stat.stat.name] == []):
-                    stats_dict[stat.stat.name] = [float(stat.base_stat)]
-                else:
-                    stats_dict[stat.stat.name].append(float(stat.base_stat))
+        for stat in pokemon.stats:
+            if (stats_dict[stat.stat.name] == []):
+                stats_dict[stat.stat.name] = [float(stat.base_stat)]
+            else:
+                stats_dict[stat.stat.name].append(float(stat.base_stat))
 
     # TODO: actually in the end test stats by distribution, 
     # ie get the sum of all stats and then get the % of that that is HP, attack, etc.
