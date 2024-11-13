@@ -77,13 +77,18 @@ def get_data(pokemon_list):
     height_list = []
     weight_list = []
     for pokemon in pokemons:
-        # pokemon._load() # force load any attributes that might be missing
         print(f"\npokemon {pokemon.name}")
-        print(dir(pokemon))
-        print(f"{pokemon.name} height is {pokemon.height}")
-        print(f"{pokemon.name} weight is {pokemon.weight}")
-        height_list.append(float(pokemon.height))
-        weight_list.append(float(pokemon.weight))
+        # print(dir(pokemon))
+        if (hasattr(pokemon, 'height')):
+            print(f"{pokemon.name} height is {pokemon.height}")
+            height_list.append(float(pokemon.height))
+        else:
+            print(f"{pokemon.name} does not have height attribute")
+        if (hasattr(pokemon, 'weight')):
+            print(f"{pokemon.name} weight is {pokemon.weight}")
+            weight_list.append(float(pokemon.weight))
+        else:
+            print(f"{pokemon.name} does not have weight attribute")
 
         for stat in pokemon.stats:
             if (stats_dict[stat.stat.name] == []):
@@ -113,6 +118,13 @@ def get_data(pokemon_list):
     print(f"min weight is {min_weight}")
 
     for pokemon in pokemons:
+        # force load everything
+        pokemon._load()
+        print(f"\npokemon {pokemon.name}")
+        print(f"\n")
+        print(pokemon.__dict__)
+        print(f"\n")
+        print(dir(pokemon))
         # this assumes every pokemon only has one type
         type_str = pokemon.types[0].type.name
         print(f"Pokemon {pokemon.name} has pre-type: {type_str}")
