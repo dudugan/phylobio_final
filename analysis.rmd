@@ -1,5 +1,5 @@
 ---
-title: "Analysis"
+title: "Ancestral State Reconstruction"
 output:
   pdf_document: default
   html_document: default
@@ -8,24 +8,120 @@ output:
 ```{r setup, echo = FALSE, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-library(ape)
-
-# Load data import, wrangling, and plotting tools from the Tidyverse. 
-# See https://r4ds.had.co.nz/ for more
+# General data analysis packages
+library(knitr)
 library(tidyverse)
-
 library(magrittr)
+library(plotrix)
+
+# Phylogenetics packages
+library(ape)
+library(phylobase)
+library(phytools)
+library(tidyverse)
+library(ggtree)
 
 ```
 
-iqtree2 -s output.nex -bb 1000 -nt AUTO 
+based on (this tutorial)[http://www.phytools.org/eqg2015/asr.html].
 
-Insert a code block below to plot the tree with bootstrap support. Then summarize the result (for example, how well supported is the tree?)
+# What I Need
+1. .tre in the form I already have
+2. .csv in form (for one trait):
+species,svl
+ahli,4.039125443
+alayoni,3.815704818
+alfaroi,3.526654599
 
-```{r fig.width=20, fig.height=8}
+## Bookkeeping for files
 
-phy = read.tree("output.nex.parstree")
-plot(phy)
-nodelabels(phy$node.label)
+```{r}
 
+# (checked for duplicate tips in python before creating .nex and .csv files!)
+
+# make sure rows of character data are in same order as tip labels
+fire.data = fire.data[order(match(row.names(fire.data), fire.tree$tip.label)), ]
+
+# double check that labels are the same, in case some were missing or duplicated
+if(! all( row.names(fire.data)==fire.tree$tip.label ) ){
+  stop("tip labels and dataframe rows not in same order!")
+}
+
+## make the tree ultrametric
+# count number of tips
+n_tips = length(fire.tree$tip.label)
+
+# get root node by finding node that isn't a child
+root_node = fire.tree$edge[(!fire.tree$edge[,1] %in% fire.tree$edge[,2]),1] %>% unique()
+
+# get max distance from root to another node (root age)
+root_age = max(dist.nodes(fire.tree)[,root_node])
+
+# rescale tree so that age of root is 1
+fire.tree$edge.length = fire.tree$edge.length / root_age
+
+# recalculate root_age to make sure things look good
+root_age = max(dist.nodes(fire.tree)[,root_node])
+
+# print tree and data
+fire.tree
+fire.data
 ```
+
+
+## Plotting the tree
+
+```{r}
+plotTree(fire.tree, type="fan", ftype="i")
+
+plot(fire.tree)
+nodelabels(fire.tree$node.label)
+```
+
+## Reading the morphological data
+
+
+## Ancestral State Reconstruction
+
+### anole examples
+
+```{r}
+## for continuous states
+# fit<-fastAnc(poke.tree, svl, vars = TRUE, CI = TRUE)
+# fit
+
+## for discrete states
+data(anoletree)
+cols<-setNames(palette()[1:6],mapped.states(anoletree))
+plot(anoletree, cols, type="fan", fsize=0.8, lwd=3, ftype="i")
+add.simmap.legend(colors=cols, x = 0.9*par()$usr[1],
+                  y = 0.9*par()$usr[4], prompt=FALSE, fsize=0.9)
+```
+
+### Do stochastic mapping and then plot posterior probabilities for each state
+```{r}
+# do stochastic mapping
+ecomorph<-as.factor(getStates(anoletree, "tips"))
+trees<-make.simmap(anoletree, ecomorph, model="ER", nsim=100)
+
+# plot posterior probabilities for each state on phylogeny
+obj<-summary(trees, plot=FALSE)
+plot(obj, colors=cols, type="fan", fsize=0.8, cex=c(0.5, 0.3))
+add.simmap.legend(colors=cols, x=0.9*par()$usr[1],
+    y=0.9*par()$usr[4],prompt=FALSE,fsize=0.9)
+
+# create an ARD model
+fit.ARD<-fitMk(anoletree, ecomorph, model="ARD")
+plot(fit.ARD, show.zeros=FALSE, main="fitted ARD model for ecomorph evolution")
+```
+
+```{r}
+# plot discrete sets on phylogeny
+fmode<-as.factor(setNames(fire.data[,2], rownames(fire.data)))
+dotTree(fire.tree, fmode, colors=setNames(c("red", "yellow", "black", "green", "orange", "blue"),
+    c('C', '0', '4', 'E', 'D', 'A')), ftype="i", fsize=0.7)
+```
+
+
+
+
