@@ -1,4 +1,4 @@
-# Phylogenetic analysis of primate nocturnality, sociality and communication
+# Phylogenetic analysis of extant Pokémon species
 My final project for Phylogenetic Biology.
 
 ## Introduction and Goals
@@ -17,9 +17,9 @@ Many have tried reconstructing the phylogenetic tree without using
 statistical methods ([1](https://www.reddit.com/r/pokemon/comments/ect3kx/pokemon_phylogenetic_tree_of_life_updated_for), [2](https://www.youtube.com/watch?v=NLuyiw3_I0c), [3](https://jgeekstudies.org/2024/08/24/euarthropod-diversity-in-pokemon-searching-for-the-ancestral-type/), [4](https://www.researchgate.net/publication/323639991_Arthropod_diversity_in_Pokemon), [5](https://www.youtube.com/@Pokecology)), and one group actually did apparently use a Bayesian MCMC analysis ([6](https://www.youtube.com/watch?v=mTItPwZThNM))! However, their research wasn't
 well-documented at all (and therefore completely impossible to replicate - this isn't
 to down on them because they probably did not consider it as serious as an analysis
-of Earth-species) *and* they did this analysis at least 11 years ago, with a different
+of Earth-species, *and* they did this analysis at least 11 years ago, with a different
 set of tools and without most of the pokémon we know and love today (including 
-all fairy-type pokémon)? Also, they used a very limited set of characteristics and
+all fairy-type pokémon)). Also, they used a very limited set of characteristics and
 weighted pokémon type very highly in a way I don't think I will, and they didn't
 clamp anything at all, whereas I will probably not include most legendary pokémon in 
 my analysis, as they're more like mythical creatures - only one organism alive at any one time, not a species. (However, I do think those people are still really cool for doing this 11 years ago :). 
@@ -52,6 +52,34 @@ This job script also can take a long time to run, depending on the number of pok
 4. ```pokeapi_pokemon.txt``` is a temporary file I created which contains the names of every pokémon that is possible to be queried through the PokéAPI. 
 5. ```analysis.rmd``` is a copy of our Chapter 08 exercise rmd, which I modified (barely) to view the basic results of my analyses.
 6. ```analysis.pdf``` is the pdf output of the previous rmd file. 
+
+## Parameters
+Properties to use:
+- abilities[0].ability.name
+- moves[0].move.name
+- stats
+- highest stat index
+- types[0].type.name
+- egg group
+-- if pokemon.name in all j of each i EggGroup[i].pokemon_species[j].name
+- color
+-- if pokemon.name in all j of each i PokemonColor[i].pokemon_species[j].name
+- habitat
+-- if pokemon.name in all j of each i PokemonHabitat[i].pokemon_species[j].name
+- shape
+-- if pokemon.name in all j of each i PokemonShape[i].pokemon_species[j].name
+
+can get some stuff with PokemonSpecies
+id:
+name:
+egg_groups:
+color:
+shape:
+habitat: can be null
+
+
+## Clamping
+
 
 ## Guidelines - you can delete this section before submission
 

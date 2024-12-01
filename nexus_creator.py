@@ -1,56 +1,13 @@
 import pokebase as pb
 import sys
 
-# testing WITHOUT moves, abilities, games, or locations
-# and putting height and weight and stats into buckets
-
-# TODO: add egg group, (body) shape, color, habitats, whether they can learn a move naturally or via TM?
+# TODO: add EggGroup, PokemonShape, PokemonColor, 
+# PokemonHabitat, highest stat, abilities, and moves
 # TODO: take out legendaries
 # TODO: only include basics OR only include final evos
 
 # so only types, height, weight, and stats
     # 18 types
-
-def type_to_char(type_):
-    match type_.lower():
-        case "fire":
-            return "0"
-        case "water":
-            return "1"
-        case "grass":
-            return "2"
-        case "electric":
-            return "3"
-        case "ice":
-            return "4"
-        case "ghost":
-            return "5"
-        case "poison":
-            return "6"
-        case "dragon":
-            return "7"
-        case "dark":
-            return "8"
-        case "flying":
-            return "9"
-        case "normal":
-            return "A"
-        case "fairy":
-            return "B"
-        case "steel":
-            return "C"
-        case "rock":
-            return "D"
-        case "bug":
-            return "E"
-        case "psychic":
-            return "F"
-        case "fighting":
-            return "G"
-        case "ground":
-            return "H"
-        case _:
-            return "?"
 
 def get_data(pokemon_list):
 
@@ -60,7 +17,7 @@ def get_data(pokemon_list):
     # initialize data dictionary
     data = {}
 
-    # find all stats
+    # find all stats (from first pokemon)
     stats_list = []
     for stat in pokemons[0].stats:
         stat_name = stat.stat.name
@@ -179,3 +136,44 @@ data = get_data(pokemon_list)
 
 # create nexus file from data
 create_nexus(data)
+
+def type_to_char(type_):
+    match type_.lower():
+        case "fire":
+            return "0"
+        case "water":
+            return "1"
+        case "grass":
+            return "2"
+        case "electric":
+            return "3"
+        case "ice":
+            return "4"
+        case "ghost":
+            return "5"
+        case "poison":
+            return "6"
+        case "dragon":
+            return "7"
+        case "dark":
+            return "8"
+        case "flying":
+            return "9"
+        case "normal":
+            return "A"
+        case "fairy":
+            return "B"
+        case "steel":
+            return "C"
+        case "rock":
+            return "D"
+        case "bug":
+            return "E"
+        case "psychic":
+            return "F"
+        case "fighting":
+            return "G"
+        case "ground":
+            return "H"
+        case _:
+            return "?"
