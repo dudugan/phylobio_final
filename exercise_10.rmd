@@ -99,6 +99,9 @@ Given the phylogeny (topology and edge lengths) and character data, we can now r
 
 ```{r}
 
+str(geoData$wingL)
+str(geoTree)
+
 wing_ancestral = 
   ace( 
     geoData$wingL, 
@@ -118,7 +121,7 @@ This gives us a variety of information about the ancestral character reconstruct
 
 - `$sigma2` is the estimate of the Brownian Motion parameter.
 
-- `$CI95` are the confidence intervales on the ancestral character state reconstructions.
+- `$CI95` are the confidence intervals on the ancestral character state reconstructions.
 
 
 Let's plot the reconstructed states on the phylogeny:
@@ -143,6 +146,9 @@ Above we used the REML (REduced Maximum-Likelihood) method of inference, an appr
 An alternative approach is the averaging method used in Phylogenetic Independent Contrasts, also developed by Joe Felsenstein.
 
 ```{r}
+
+str(geoData$wingL)
+str(geoTree)
 
 wing_ancestral_pic = 
   ace( 
@@ -179,10 +185,6 @@ D_methods %>%
 
 ```
 
-
-> **_Problem 1:_** How sensitive is this analysis to the inference method used? Do any estimates fall outside of the 95% confidence intervals of the other methods? How does this make you feel about the inference?
-
-
 ## Confidence and node age
 
 The code below explores the width of the confidence intervals for each reconstruction.
@@ -201,15 +203,6 @@ geo_ggtree +
 
 
 ```
-
-> **_Problem 2:_** Is there a relationship between node age and the width of the confidence interval? Why do you think this is?
-
-
-
-
-## Tarsus length
-
-> **_Problem 3:_** Perform the same analyses as above, but for tarsus length `tarsusL`. Also assess model sensitivity, as above. Comment your code thoroughly to explain in narrative form what it is doing. 
 
 
 ## Simulation
@@ -259,4 +252,17 @@ D_sim[(n_tips+1):nrow(D_sim),] %>%
 
 ```
 
-> **_Problem 4:_** How close is the sig2 value used to simulate the data to the estimated sigma2 rate (it is the first of the two values shown after `$sigma2`)? Do the simulated ancestral values fall within the 95% confidence intervals of the estimated vales? How well do you think the reconstruction did?
+# My own
+
+from [here](http://www.phytools.org/eqg2015/asr.html).
+
+```{r}
+
+```
+
+
+
+
+
+
+
