@@ -53,9 +53,9 @@ One last thing to note is that I excluded certain Pokémon from my analyses. The
 ### Baby Analyses
 I first conducted an analysis of all Generation 1 fire-type Pokémon (12 pokémon total). This produces some interesting results - notably, the data for different forms (basic, stage 1, stage 2) of the same species were often identical, so I was forced to combine them with an "_" as you can see here. 
 
-Also, the sole legendary Pokémon *Moltres* failed the chi-2 test, indicating that it was too far away from the other species to be reliably placed in the tree. This was a really cool result, because it kind of affirms what is in the Pokémon canon (and therefore signals that the creators were pretty consistent in how they made the stats for legendary Pokémon). 
+Also, the sole legendary Pokémon *Moltres* failed the chi2 test, indicating that it was too far away from the other species to be reliably placed in the tree. This was a really cool result, because it kind of affirms what is in the Pokémon canon (and therefore signals that the creators were pretty consistent in how they made the stats for legendary Pokémon). 
 
-![alt text](<Screenshot 2024-12-17 at 13.23.33.png>)
+![alt text](<extra/baby_analysis.png>)
 
 ### Final Analyses
 
@@ -64,6 +64,10 @@ Many analyses came in between my baby analyses and my final analyses, but as the
 I will now provide visualizations of each trait plotted on the topology of my final Gen 1-5 Basic Pokémon tree - the reconstructed ancestral states and the tip states. Note that all of these plots are very high resolution, so to actually view them and scroll around to read everything, you can open them in new tabs or find them in this repository in /basic/ASR/.... 
 
 Also note that all of these trees are rooted at Mew, and you can find the trees rooted at the midpoint instead in /basic no_mew/ASR/.... 
+
+(But first, the topology on its own!:)
+
+![alt text](basic/topology.png)
 
 #### Type:
 
@@ -99,8 +103,102 @@ Also note that all of these trees are rooted at Mew, and you can find the trees 
 
 
 ## Discussion
+In a sense what we are really measuring is how consistent the creators of Pokémon are, so keep that in mind as a lens under which to view this entire discussion. 
 
-These results indicate...
+### Conclusions from Baby Analyses
+Pokémon of the same species have very similar trait values! Also, Pokémon that canonically did not evolve from the big Pokémon evolutionary tree (legendaries, man-made or alien Pokémon, etc.) have sufficiently different trait values to either fail the chi2 test or be grouped all on their own. 
+
+Evidence for this last point is that my final large trees, I hadn't taken out *Jirachi*, *Victini*, and *Celebi*, which are all "mythical" Pokémon - extremely rare and only obtainable via special events - and iqtree often grouped them together (the 'basic' analysis grouped *Victini* and *Celebi*, the analysis without type grouped *Jirachi* and *Victini*, and the analysis using the 'multiply' method of ability encoding grouped all three). 
+
+![alt text](<extra/celebi victini jirachi.png>)
+
+### The Topology Itself
+As presented in class, the basic topology can be broadly summarized in terms of Earth organisms (from top to bottom of the tree) - this is the basic tree rooted at Mew:
+
+![alt text](extra/top4.png)
+![alt text](extra/top3.png)
+![alt text](extra/top2.png)
+![alt text](extra/top1.png)
+
+What's really funny to think about here is that water types evolved last. I was wondering whether this had to do with the tree being rooted at Mew, a non-water type, but in fact, when I root the tree at its midpoint, water types also appear near-last:
+
+![alt text](extra/no_mew.png)
+
+I think all this signals though is that water types are pretty distinct from everything else. 
+
+
+### Ancestral States
+
+The most parsimonious trait were type and egg group - meaning, type and egg group were the traits plotted most parsimoniously across the tree with my ancestral state reconstructions. Many of the other traits were pretty parsimonious as well, just less so. Furthermore, type and egg group seemed to evolve in tandem a lot of the time. 
+
+This makes a sense when you look at what the options for type and egg group actually are:
+
+![alt text](extra/types.png)
+
+![alt text](<extra/egg_groups.png>)
+
+At least six of these options overlap, and yet more are very very similar!
+
+One thing to consider is whether the fact that we have two traits that evolved closely together is the reason *why* these traits are the most parsimoniously distributed across the tree. I didn't get to the ancestral state reconstructions for the analysis without 'type' yet, but if type and egg group are significantly less parsimoniously distributed across the tree, then this might be why. 
+
+The ramifications of this is also interesting to consider for analyses on sequenced DNA. Is it fine that certain areas of the genome will always be really similar to each other, and therefore weighted more heavily, than other parts? Is this good? Is this bad? For what purposes? If so, how do we fix it?
+
+### Type Guessing
+One really cool and unexpected result, which I discussed in class, was that the analysis was really good at guessing the second type of certain Pokémon. I only gave iqtree the *first* type of each Pokémon, but a large portion of the Pokémon grouped outside their first type on the tree are actually grouped with their *second* type. 
+
+For example, *Surskit* here is a water and grass type; however, my NEXUS file only contains the information that it's a grass type (thus why it's plotted as green on this type-colored tree). But it was placed with the water types!
+
+![alt text](<extra/surskit.png>)
+
+Similarly, *Skorupi* is a poison and bug type, but iqtree only knew it was a poison type - yet it was grouped with the bug types. 
+
+![alt text](<extra/skorupi.png>)
+
+So why is the model able to guess these things? It probably has to do with one or two of the other traits. Indeed, if we look at egg group, the trait we found to be most similar to type in distribution, we find that *Surskit* and *Skorupi* are grouped with their second type!:
+
+![alt text](<extra/surskit_egg.png>)
+
+![alt text](<extra/skorupi_egg.png>)
+
+
+### Region Not Good
+
+Plotting region onto our topology did not look good. It seemed to have a pretty random distribution. This could mean two things: First, it could mean that this analysis is pretty flawed, and the only reason region didn't plot nicely is because we didn't put it into our analysis (hence, the only reason the other things plotted well was because we *did*). Second, it could mean there's some other reason why region should be distributed randomly. 
+
+I can't say with complete confidence this is why, but I do think I have a pretty good reason for this result other than our analysis being bad: it makes sense that region should be distributed randomly, because 'region' is the same thing as 'generation' here, and it makes sense that in each generation of Pokémon released by Nintendo, they'd want a full spread of Pokémon of all types, shapes, colors, etc. In each generation, we see a similar spread of varied Pokémon. 
+
+And we can actually get evidence about this hypothesis just by looking again at the region tree. We are trying to figure out whether the distribution is truly random, or whether the distribution is *even* - not clumps of Pokémon from region 1 and clumps of Pokémon from region 2, but region 1 spanning the full tree, and region 2 spanning the full tree, and so on. Whereas if it was completely random we'd actually be *more* likely to see clumps, out of pure chance. 
+
+![alt text](<extra/region_zoom.png>)
+
+Sure enough, that's what we see! Even just looking at a small part of the larger tree, in each tiny sub-branch, we can almost always see at least one representative from all five regions - they are very evenly split. 
+
+### When Not Rooting at Mew
+
+Changing where we root the tree doesn't actually change much! The one interesting thing to note here is that water types still evolve somewhat late, and that the midpoint of the tree is determined to be a normal type. 
+
+Here's the topology:
+
+![alt text](<basic no_mew/topology.png>)
+
+### When Without Type
+
+Without type, things get kind of crazy...
+
+![alt text](<no_type/topology.png>)
+
+I can still tell why certain things happen - so I know my NEXUS file didn't get super corrupted because I subtracted a trait or something - but all in all, the phylogeny just makes less intuitive sense. 
+
+Either this is because type was just really that important to the analysis, or this is because *anything* would be that important, and subtracting *anything* from it would result in a similarly weird topology. I really want to take out other traits to figure this out!
+
+
+### Using the 'Multiply' Method
+
+In contrast to this, the 'multiply' method topology actually *seems* really nice and in accordance with my expectations. I want to devote more time to thinking about why this is - I'm really not sure why this would work so well. Maybe ability bucket was just not helping to begin with, but then why would doubling its weight make anything better?
+
+![alt text](<multiply/topology.png>)
+
+## The Future of This Project
 
 The biggest difficulty in implementing these analyses was...
 
