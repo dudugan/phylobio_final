@@ -46,7 +46,7 @@ One last thing to note is that I excluded certain Pokémon from my analyses. The
 
 1. I excluded all non-Basic Pokémon. "Basic" Pokémon can be thought of as the first stage in each Pokémon's species' life cycle, with "Stage 1" and "Stage 2" Pokémon being the next stages. Many Pokémon species have only basic forms; many have only basics and stage 1s, and many have all three forms. The 'species' is the grouping of all 1-3 Pokémon - I included one Pokémon per species. I did this partly because it just makes sense to me to perform the analysis on the species level, but also because Pokémon of the same species were actually causing problems by being too similar to each other in my initial analyses. 
 
-2. I excluded all legendary, man-made, mythical, or alien Pokémon, which canonically did not evolve within the Pokémon universe. This was also both because it makes sense and because these species were causing problems. 
+2. I excluded all legendary, man-made, or alien Pokémon, which canonically did not evolve within the Pokémon universe. This was also both because it makes sense and because these species were causing problems. 
 
 ## Results
 
@@ -59,7 +59,7 @@ Also, the sole legendary Pokémon *Moltres* failed the chi2 test, indicating tha
 
 ### Final Analyses
 
-Many analyses came in between my baby analyses and my final analyses, but as they're all basically just dysfunctional versions of my final analyses, I didn't include them. My final analyses were all conducted on the same group of 262 Pokémon: all of the non-legendary/man-made/alien/mythical basic Pokémon from generations 1-5. I probably could've incorporated more generations into my analysis, but 5 already took a full day on iqtree, and I wanted to spend the rest of my time analyzing rather than generating. I do plan to repeat this analysis with all the generations over break, though. 
+Many analyses came in between my baby analyses and my final analyses, but as they're all basically just dysfunctional versions of my final analyses, I didn't include them. My final analyses were all conducted on the same group of 262 Pokémon: all of the non-legendary/man-made/alien basic Pokémon from generations 1-5. I probably could've incorporated more generations into my analysis, but 5 already took a full day on iqtree, and I wanted to spend the rest of my time analyzing rather than generating. I do plan to repeat this analysis with all the generations over break, though. 
 
 I will now provide visualizations of each trait plotted on the topology of my final Gen 1-5 Basic Pokémon tree - the reconstructed ancestral states and the tip states. Note that all of these plots are very high resolution, so to actually view them and scroll around to read everything, you can open them in new tabs or find them in this repository in /basic/ASR/.... 
 
