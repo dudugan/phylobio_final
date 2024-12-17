@@ -53,7 +53,7 @@ One last thing to note is that I excluded certain Pokémon from my analyses. The
 ### Baby Analyses
 I first conducted an analysis of all Generation 1 fire-type Pokémon (12 pokémon total). This produces some interesting results - notably, the data for different forms (basic, stage 1, stage 2) of the same species were often identical, so I was forced to combine them with an "_" as you can see here. 
 
-Also, sole legendary Pokémon *Moltres* failed the chi-2 test, indicating that it was too far away from the other species to be reliably placed in the tree. This was a really cool result, because it kind of affirms what is in the Pokémon canon (and therefore signals that the creators were pretty consistent in how they made the stats for legendary Pokémon). 
+Also, the sole legendary Pokémon *Moltres* failed the chi-2 test, indicating that it was too far away from the other species to be reliably placed in the tree. This was a really cool result, because it kind of affirms what is in the Pokémon canon (and therefore signals that the creators were pretty consistent in how they made the stats for legendary Pokémon). 
 
 ![alt text](<Screenshot 2024-12-17 at 13.23.33.png>)
 
@@ -61,10 +61,41 @@ Also, sole legendary Pokémon *Moltres* failed the chi-2 test, indicating that i
 
 Many analyses came in between my baby analyses and my final analyses, but as they're all basically just dysfunctional versions of my final analyses, I didn't include them. My final analyses were all conducted on the same group of 262 Pokémon: all of the non-legendary/man-made/alien/mythical basic Pokémon from generations 1-5. I probably could've incorporated more generations into my analysis, but 5 already took a full day on iqtree, and I wanted to spend the rest of my time analyzing rather than generating. I do plan to repeat this analysis with all the generations over break, though. 
 
-The topology of my final Gen1-5 basic Pokémon tree looks like this:
+I will now provide visualizations of each trait plotted on the topology of my final Gen 1-5 Basic Pokémon tree - the reconstructed ancestral states and the tip states. Note that all of these plots are very high resolution, so to actually view them and scroll around to read everything, you can open them in new tabs or find them in this repository in /basic/ASR/.... 
 
+Also note that all of these trees are rooted at Mew, and you can find the trees rooted at the midpoint instead in /basic no_mew/ASR/.... 
 
+#### Type:
 
+![alt text](basic/ASR/type/rect.png)
+
+#### Shape:
+
+![alt text](basic/ASR/shape/rect.png)
+
+#### Color:
+
+![alt text](basic/ASR/color/rect.png)
+
+#### Habitat:
+
+![alt text](basic/ASR/habitat/rect.png)
+
+#### Egg Group:
+
+![alt text](basic/ASR/egg_group/rect.png)
+
+#### Highest Statistic:
+
+![alt text](basic/ASR/stat/rect.png)
+
+#### Ability Bucket:
+
+![alt text](basic/ASR/ability/rect.png)
+
+#### Region (not inputted into analysis):
+
+![alt text](basic/ASR/region/rect.png)
 
 
 ## Discussion
