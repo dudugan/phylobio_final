@@ -29,22 +29,53 @@ Strategy 2 I called <span style="color:violet">multiply</span>, and in this stra
 
 I also initially wanted to try mapping this space of 1-297 onto a continuous trait which could range from 0 to 1, but I spent a long time trying to get iqtree to run continuous and discrete traits in tandem and it just wasn't working. However, even this approach has its problems, because I assume iqtree would predict it easier to move from, for example, the 214th ability to the 215th ability, than to the 197th ability, even though the listing of abilities is likely random or uninformative. 
 
+Importantly, I also wanted to figure out what would happen if I took out each trait from my NEXUS input - how would the topology change? So I ran one analysis where my NEXUS file did not take into account Pokémon type. I couldn't get to the others because each iqtree run took about a day, but I would like to in the future!
+
 ### Running the Analyses
-After creating a NEXUS file, I moved it onto the Yale McCleary Computing Cluster and ran iqtree on it (for smaller analyses, with a 2-hour limit, but for my final analyses, with a 24-hour limit). My analyses often took quite a long time, with some exceeding the time limit completely (and thus I had to figure out a way to get them to run faster). 
+After creating a NEXUS file, I moved it onto the Yale McCleary Computing Cluster and ran iqtree on it (for smaller analyses, with a 2-hour limit, but for my final analyses, with a 24-hour limit). My analyses often took quite a long time, with some exceeding the time limit completely or stopping themselves before reaching a solution - I solved the latter issue by allowing them more iterations before stoppage, but the former remains unsolved. 
 
-What I did:
+### Visualizing the Results, and Reconstructing Ancestral States
 
-- created an R file ([central.rmd](central.rmd)) to turn a treefile and csv file into various visualizations of the tree's topology and ancestral states
+I created an R file called [central.rmd](central.rmd) to turn a .treefile and .csv file into various visualizations of the tree's topology and ancestral states. I also tried to create an ARD model for each trait, but as of right now this doesn't work on larger trees. 
 
-- created treefiles for said groups using iqtree on the Yale McCleary Computing Cluster.
-- reconstructed the ancestral states of these Pokémon on the previously mentioned traits, with the addition of <span style="color:salmon">[region]</span>. 
-- created visualizations of ancestral states and topology.
-- ran one of my analyses but without <span style="color:salmon">[type]</span> as a trait in the NEXUS file.
-- ran one of my analyses but encoded <span style="color:salmon">[ability]</span> differently.
-- rooted each of my visualizations at Mew, and also at the midpoint of the tree.
+I also visualized everything both rooted at Mew (the canonical ancestor of all Pokémon) and at the midpoint of the tree. 
+
+### Excluding Certain Pokémon
+
+One last thing to note is that I excluded certain Pokémon from my analyses. There are two main ways this happened:
+
+1. I excluded all non-Basic Pokémon. "Basic" Pokémon can be thought of as the first stage in each Pokémon's species' life cycle, with "Stage 1" and "Stage 2" Pokémon being the next stages. Many Pokémon species have only basic forms; many have only basics and stage 1s, and many have all three forms. The 'species' is the grouping of all 1-3 Pokémon - I included one Pokémon per species. I did this partly because it just makes sense to me to perform the analysis on the species level, but also because Pokémon of the same species were actually causing problems by being too similar to each other in my initial analyses. 
+
+2. I excluded all legendary, man-made, mythical, or alien Pokémon, which canonically did not evolve within the Pokémon universe. This was also both because it makes sense and because these species were causing problems. 
+
+## Results
+
+### Baby Analyses
+I first conducted an analysis of all Generation 1 fire-type Pokémon (12 pokémon total). This produces some interesting results - notably, the data for different forms (basic, stage 1, stage 2) of the same species were often identical, so I was forced to combine them with an "_" as you can see here. 
+
+Also, sole legendary Pokémon *Moltres* failed the chi-2 test, indicating that it was too far away from the other species to be reliably placed in the tree. This was a really cool result, because it kind of affirms what is in the Pokémon canon (and therefore signals that the creators were pretty consistent in how they made the stats for legendary Pokémon). 
+
+![alt text](<Screenshot 2024-12-17 at 13.23.33.png>)
+
+### Final Analyses
+
+Many analyses came in between my baby analyses and my final analyses, but as they're all basically just dysfunctional versions of my final analyses, I didn't include them. My final analyses were all conducted on the same group of 262 Pokémon: all of the non-legendary/man-made/alien/mythical basic Pokémon from generations 1-5. I probably could've incorporated more generations into my analysis, but 5 already took a full day on iqtree, and I wanted to spend the rest of my time analyzing rather than generating. I do plan to repeat this analysis with all the generations over break, though. 
+
+The topology of my final Gen1-5 basic Pokémon tree looks like this:
 
 
 
+
+
+## Discussion
+
+These results indicate...
+
+The biggest difficulty in implementing these analyses was...
+
+If I did these analyses again, I would...
+
+## References
 
 
 
@@ -72,87 +103,3 @@ clamp anything at all, whereas I will probably not include most legendary pokém
 my analysis, as they're more like mythical creatures - only one organism alive at any one time, not a species. (However, I do think those people are still really cool for doing this 11 years ago :). 
 
 My analysis will be scientific in all ways it can be, and unscientific in all other ways. 
-
-## Minimum Viable Analysis
-For my Minimum Viable Analysis, I have created a few different files, all available in this github repository:
-1. ```nexus_creator.py``` is a python program which takes in a list of pokemon as command-line arguments (right now all lowercase, although I'll fix this later), and creates a nexus file named ```output.nex``` which turns their height, weight, statistics (HP, attack, speed, etc.), and first-listed type into a categorical state matrix. Importantly, I was still having bugs with continuous data so for now this program finds the minumum and maximum of each continuous characteristic, and maps this onto the range 0-9, and places each pokémon's value into one of these 10 integer buckets. I also plan to use a lot of other data available via the PokéAPI (which is where I query this data from), but was getting some bugs with characteristics that had more than 32 options (ie moves, abilities, etc.). You can see some of what I planned to do in ```nexml_creator.py```, which is otherwise defunct. *Importantly, this took an EXTREMELY LONG time to run on my computer, so I created a Google CoLab file, accessible here, which has slightly different code just because it's a Google CoLab file: https://colab.research.google.com/drive/1m-btLlmKF7QiCdySDWcPs1hZzrsCqaNH?usp=sharing. 
-2. ```output.nex``` is an example of what ```nexus_creator.py``` might output. 
-3. ```output.nex.parstree``` is an example of what iqtree2 outputs after running through ```output.nex``` on the cluster. The job script is as follows: 
-
-```
-#!/bin/bash
-#SBATCH --job-name=iqtree
-#SBATCH --time=2:00:00
-#SBATCH --nodes=1
-#SBATCH --ntasks=1 
-#SBATCH --cpus-per-task=8
-#SBATCH --mem-per-cpu=1G
-#SBATCH -p education
-
-module load IQ-TREE
-
-iqtree2 -s output.nex -bb 1000 -nt AUTO
-```
-
-This job script also can take a long time to run, depending on the number of pokémon - as of the time of writing, I've been running a script trying to find the phylogeny of 75 different taxa (nearly all the basic Gen 1 Pokémon) for 31 minutes and 42 seconds. 
-
-4. ```pokeapi_pokemon.txt``` is a temporary file I created which contains the names of every pokémon that is possible to be queried through the PokéAPI. 
-5. ```analysis.rmd``` is a copy of our Chapter 08 exercise rmd, which I modified (barely) to view the basic results of my analyses.
-6. ```analysis.pdf``` is the pdf output of the previous rmd file. 
-
-## Parameters
-Properties to use:
-- abilities[0].ability.name
-- moves[0].move.name
-- stats
-- highest stat index
-- types[0].type.name
-- egg group
--- if pokemon.name in all j of each i EggGroup[i].pokemon_species[j].name
-- color
--- if pokemon.name in all j of each i PokemonColor[i].pokemon_species[j].name
-- habitat
--- if pokemon.name in all j of each i PokemonHabitat[i].pokemon_species[j].name
-- shape
--- if pokemon.name in all j of each i PokemonShape[i].pokemon_species[j].name
-
-can get some stuff with PokemonSpecies
-id:
-name:
-egg_groups:
-color:
-shape:
-habitat: can be null
-
-
-## Clamping
-
-
-## Guidelines - you can delete this section before submission
-
-If you would like the writeup to be an executable document (with [knitr](http://yihui.name/knitr/), [jupytr](http://jupyter.org/), or other tools), you can create it as a separate file and put a link to it here in the readme.
-
-The project must be entirely reproducible. In addition to the results, the repository must include all the data (or links to data) and code needed to reproduce the results.
-
-Paste references (including urls) into the reference section, and cite them with the general format (Smith at al. 2003).
-
-OK, here we go.
-
-## Methods
-
-The tools I used were... See analysis files at (links to analysis files).
-
-## Results
-
-The tree in Figure 1...
-
-## Discussion
-
-These results indicate...
-
-The biggest difficulty in implementing these analyses was...
-
-If I did these analyses again, I would...
-
-## References
-

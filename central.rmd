@@ -35,13 +35,13 @@ based on (this tutorial)[http://www.phytools.org/eqg2015/asr.html].
 
 ```{r}
 # read in tree and csv, set filename for folder/file creation
-name = "no_type"
+name = "basic"
 
 # choose whether to root tree at midpoint or choose a specific tip node as root (ie "mew")
 root_choice = "mew" # set it to "midpoint" for rooting at midpoint, and "mew" for rooting at mew (and anything else for rooting at anything else!)
 
 # define features to reconstruct ancestral states for
-features <- c("type", "ability", "stat", "shape", "color", "habitat", "egg_group")
+features <- c("type", "ability", "stat", "shape", "color", "habitat", "egg_group", "region")
 ```
 
 
