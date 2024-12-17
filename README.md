@@ -199,16 +199,14 @@ In contrast to this, the 'multiply' method topology actually *seems* really nice
 ![alt text](<multiply/topology.png>)
 
 ## The Future of This Project
+I think I will continue to do work on this over winter break, mostly just because I think it's cool and I want to see what the results are/make a more finished analysis. (Also, I'm taking a gap semester in the spring so I'll have time!). With that in mind, here are some of the things I plan to do in the near future!
 
-The biggest difficulty in implementing these analyses was...
+- Take out all of the rest of the traits one by one, not just type, and see how that impacts the analysis (and not just the topology but the reconstructed states as well). 
+- Get my ancestral state reconstruction to work on the no_type and multiply analyses. 
+- Utilize 'fossil' pokémon for internal nodes. 
+- Get iqtree to take less time in generating the trees, and verify that it's not stopping too early all the time. 
 
-If I did these analyses again, I would...
-
-## References
-
-
-
-## Introduction and Goals
+<!-- ## Introduction and Goals
 *to be edited later...*
 
 It is a great mystery, and an understudied one at that, 
@@ -231,4 +229,4 @@ weighted pokémon type very highly in a way I don't think I will, and they didn'
 clamp anything at all, whereas I will probably not include most legendary pokémon in 
 my analysis, as they're more like mythical creatures - only one organism alive at any one time, not a species. (However, I do think those people are still really cool for doing this 11 years ago :). 
 
-My analysis will be scientific in all ways it can be, and unscientific in all other ways. 
+My analysis will be scientific in all ways it can be, and unscientific in all other ways.  -->
