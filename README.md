@@ -204,7 +204,8 @@ I think I will continue to do work on this over winter break, mostly just becaus
 - Take out all of the rest of the traits one by one, not just type, and see how that impacts the analysis (and not just the topology but the reconstructed states as well). 
 - Get my ancestral state reconstruction to work on the no_type and multiply analyses. 
 - Utilize 'fossil' pokémon for internal nodes. 
-- Get iqtree to take less time in generating the trees, and verify that it's not stopping too early all the time. 
+- Get iqtree to take less time in generating the trees, and verify that it's not stopping too early all the time.
+- Actually do all this on all 9 generations!
 
 <!-- ## Introduction and Goals
 *to be edited later...*
