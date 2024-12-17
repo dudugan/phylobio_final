@@ -129,7 +129,7 @@ I think all this signals though is that water types are pretty distinct from eve
 
 ### Ancestral States
 
-The most parsimonious trait were type and egg group - meaning, type and egg group were the traits plotted most parsimoniously across the tree with my ancestral state reconstructions. Many of the other traits were pretty parsimonious as well, just less so. Furthermore, type and egg group seemed to evolve in tandem a lot of the time. 
+The most parsimonious traits were type and egg group - meaning, type and egg group were the traits plotted most parsimoniously across the tree with my ancestral state reconstructions. Many of the other traits were pretty parsimonious as well, just less so. Furthermore, type and egg group seemed to evolve in tandem a lot of the time. 
 
 This makes a sense when you look at what the options for type and egg group actually are:
 
